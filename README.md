@@ -1,33 +1,38 @@
-# Projet Hôpital
+# Gestion_Med
 
-Application web de gestion hospitalière (gestion des patients, de leur état civil, et du personnel avec rôles : admin, médecin, infirmier, secrétaire).
-Construite sur le « Randy Framework » (front controller maison) + Spring (injection et JDBC), avec une base PostgreSQL.
+Application web de gestion hospitalière : patients, état civil, personnel et rôles (admin, médecin, infirmier, secrétaire).
+
+Stack : Randy Framework, Spring (IoC, JDBC), PostgreSQL.
 
 ## Prérequis
 
-- Java 21 (JDK)
+- JDK 21
 - Maven 3.8+
-- Apache Tomcat 10.1+ (Jakarta EE / Servlet 5+)
+- Tomcat 10.1+
 - PostgreSQL 14+
-- Randy Framework installé dans le dépôt Maven local (`mvn install` dans le projet du framework)
+- Randy Framework installé dans le dépôt Maven local
 
-## Déploiement
+## Installation
 
-1. **Base de données**
-   ```bash
-   psql -U postgres -c "CREATE DATABASE hopital;"
-   psql -U postgres -d hopital -f Hopital/sql/hopital.sql
-   ```
+### Base de données
 
-2. **Identifiants** : copier le modèle puis renseigner user / mot de passe
-   ```bash
-   cp Hopital/src/main/resources/db.properties.example Hopital/src/main/resources/db.properties
-   ```
-   `db.properties` est ignoré par git : il ne doit jamais être commité.
+```bash
+psql -U postgres -c "CREATE DATABASE hopital;"
+psql -U postgres -d hopital -f sql/hopital.sql
+```
 
-3. **Build + déploiement dans Tomcat**
-   ```bash
-   cd Hopital
-   TOMCAT_WEBAPPS=/chemin/vers/tomcat/webapps bash deploy.sh
-   ```
-   L'application sera accessible en local sur http://localhost:8080/hopital/
+### Configuration
+
+```bash
+cp src/main/resources/db.properties.example src/main/resources/db.properties
+```
+
+Renseigner `db.url`, `db.username` et `db.password` dans `db.properties`.
+
+### Déploiement
+
+```bash
+TOMCAT_WEBAPPS=/chemin/vers/tomcat/webapps bash deploy.sh
+```
+
+URL : http://localhost:8080/hopital/
