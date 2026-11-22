@@ -8,7 +8,7 @@
            http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Spring scanne et gère les @Service et @Repository -->
-    <context:component-scan base-package="com.hopital.service, com.hopital.repository"/>
+    <context:component-scan base-package="com.hopital.service, com.hopital.repository, com.hopital.validation"/>
 
     <!-- Identifiants lus depuis src/main/resources/db.properties (non versionné, voir db.properties.example) -->
     <context:property-placeholder location="classpath:db.properties"/>
