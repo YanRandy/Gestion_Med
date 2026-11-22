@@ -1,5 +1,5 @@
 package com.hopital.controller;
 
-public class RUserController {
+public class RoleController {
 
 }
