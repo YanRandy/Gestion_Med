@@ -79,6 +79,9 @@ CREATE TABLE patient (
     date_delivrance_cin       DATE,
     lieu_delivrance_cin       VARCHAR(100),
 
+    -- Accès patient (compte créé par le médecin, NULL tant qu'il n'existe pas)
+    id_user                   INT UNIQUE REFERENCES users(id),
+
     created_at                TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -93,4 +96,4 @@ INSERT INTO nationalite (libelle) VALUES
     ('Malagasy'), ('Française'), ('Comorienne'), ('Mauricienne'), ('Autre');
 
 INSERT INTO roles (libelle) VALUES
-    ('ADMIN'), ('MEDECIN'), ('INFIRMIER'), ('SECRETAIRE');
+    ('ADMIN'), ('MEDECIN'), ('INFIRMIER'), ('SECRETAIRE'), ('PATIENT');
