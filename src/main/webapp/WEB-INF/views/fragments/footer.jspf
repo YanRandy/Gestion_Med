@@ -1,0 +1,8 @@
+<%@ page pageEncoding="UTF-8" %>
+<%-- Pied de page commun. --%>
+<footer class="site-footer">
+    <div class="container">
+        <%@ include file="logo.jspf" %>
+        <p>Gestion des dossiers patients de l'hôpital.</p>
+    </div>
+</footer>

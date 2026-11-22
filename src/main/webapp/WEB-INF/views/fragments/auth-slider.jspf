@@ -1,0 +1,64 @@
+<%@ page pageEncoding="UTF-8" %>
+<%-- Formulaire de connexion coulissant (personnel / patient).
+     Styles : global.css (section "Connexion"). Comportement : assets/js/auth.js. --%>
+<div class="auth-slider" data-auth-slider>
+
+    <section class="auth-pane" data-pane="staff" aria-labelledby="staff-title">
+        <h3 id="staff-title">Espace personnel</h3>
+        <p class="lead">Médecins et personnel administratif de l'hôpital.</p>
+
+        <form data-login novalidate>
+            <div class="alert alert-error" role="alert" aria-live="assertive"></div>
+            <div class="field">
+                <label for="staff-email">Email professionnel</label>
+                <input class="input" type="email" id="staff-email" name="email" autocomplete="username" required>
+            </div>
+            <div class="field">
+                <label for="staff-password">Mot de passe</label>
+                <div class="password-wrap">
+                    <input class="input" type="password" id="staff-password" name="password" autocomplete="current-password" required>
+                    <button type="button" class="password-toggle" data-password-toggle
+                            aria-controls="staff-password" aria-pressed="false">Afficher</button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+        </form>
+        <p class="auth-help">Mot de passe oublié : adressez-vous à l'administration.</p>
+    </section>
+
+    <section class="auth-pane" data-pane="patient" aria-labelledby="patient-title">
+        <h3 id="patient-title">Espace patient</h3>
+        <p class="lead">Consultez votre dossier médical.</p>
+
+        <form data-login novalidate>
+            <div class="alert alert-error" role="alert" aria-live="assertive"></div>
+            <div class="field">
+                <label for="patient-email">Adresse email</label>
+                <input class="input" type="email" id="patient-email" name="email" autocomplete="username" required>
+            </div>
+            <div class="field">
+                <label for="patient-password">Mot de passe</label>
+                <div class="password-wrap">
+                    <input class="input" type="password" id="patient-password" name="password" autocomplete="current-password" required>
+                    <button type="button" class="password-toggle" data-password-toggle
+                            aria-controls="patient-password" aria-pressed="false">Afficher</button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Accéder à mon dossier</button>
+        </form>
+        <p class="auth-help">Mot de passe oublié : demandez-le à votre médecin.</p>
+    </section>
+
+    <div class="auth-overlay">
+        <div class="overlay-panel" data-overlay="to-patient">
+            <p class="overlay-title">Vous êtes patient&nbsp;?</p>
+            <p>Connectez-vous avec l'email et le mot de passe que votre médecin a créés pour vous pendant la consultation.</p>
+            <button type="button" class="btn btn-on-ink" data-show="patient">Aller à l'espace patient</button>
+        </div>
+        <div class="overlay-panel" data-overlay="to-staff">
+            <p class="overlay-title">Vous travaillez à l'hôpital&nbsp;?</p>
+            <p>Utilisez votre email professionnel et le mot de passe remis par l'administration.</p>
+            <button type="button" class="btn btn-on-ink" data-show="staff">Aller à l'espace personnel</button>
+        </div>
+    </div>
+</div>

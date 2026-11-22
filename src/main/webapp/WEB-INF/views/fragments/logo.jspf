@@ -1,0 +1,10 @@
+<%@ page pageEncoding="UTF-8" %>
+<%-- Logo : un dossier (la fiche patient) traversé par une ligne de battement de cœur, suivi du nom. --%>
+<a class="wordmark" href="${pageContext.request.contextPath}/" aria-label="Gestion Med, accueil">
+    <svg class="logo-mark" viewBox="0 0 36 36" aria-hidden="true">
+        <path d="M3 10.5A3.5 3.5 0 0 1 6.5 7h7.2l3.3 3.3h12.5a3.5 3.5 0 0 1 3.5 3.5v14.7a3.5 3.5 0 0 1-3.5 3.5h-23A3.5 3.5 0 0 1 3 28.5z" fill="#102A4C"/>
+        <polyline points="6,21.5 11.5,21.5 14,16.5 17.5,27 21,14.5 23.5,21.5 30,21.5"
+                  fill="none" stroke="#7FD9C8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="wordmark-text">Gestion Med</span>
+</a>
