@@ -1,5 +1,5 @@
 package com.hopital.service;
 
-public class RPatientService {
+public class RoleService {
 
 }
