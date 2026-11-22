@@ -5,3 +5,6 @@ target/
 *.iml
 src/main/resources/db.properties
 .github/modernize/
+modeles/*
+sql/donnees_test.sql
+.gitignore
