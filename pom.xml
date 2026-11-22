@@ -56,6 +56,12 @@
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>3.0.1</version>
         </dependency>
+        <!-- BCrypt pour les mots de passe -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>6.3.4</version>
+        </dependency>
         <!-- Driver PostgreSQL -->
         <dependency>
             <groupId>org.postgresql</groupId>

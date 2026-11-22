@@ -19,4 +19,15 @@ echo "Build OK : $WAR_FILE"
 rm -f  "$TOMCAT_WEBAPPS/${APP_NAME}.war"
 rm -rf "$TOMCAT_WEBAPPS/${APP_NAME}"
 cp "$WAR_FILE" "$TOMCAT_WEBAPPS/${APP_NAME}.war"
+echo "WAR copié dans $TOMCAT_WEBAPPS"
+
+# Démarrage de Tomcat s'il ne tourne pas déjà (sinon l'autodeploy recharge le WAR)
+TOMCAT_HOME="$(dirname "$TOMCAT_WEBAPPS")"
+if pgrep -f "catalina.base=$TOMCAT_HOME" > /dev/null; then
+    echo "Tomcat déjà démarré : rechargement automatique du WAR"
+else
+    echo "Démarrage de Tomcat..."
+    "$TOMCAT_HOME/bin/catalina.sh" start
+fi
+
 echo "Déployé : http://localhost:8080/${APP_NAME}/"
