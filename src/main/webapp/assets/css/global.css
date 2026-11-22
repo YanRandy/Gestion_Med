@@ -1,0 +1,777 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Familjen+Grotesk:wght@600;700&display=swap");
+
+:root {
+    /* Bleu marine hospitalier + vert soin, sur fond gris-bleu très clair */
+    --ink: #102A4C;
+    --ink-soft: #23446E;
+    --paper: #FFFFFF;
+    --canvas: #F3F6FA;
+    --field: #E8EEF5;
+    --line: #CBD6E3;
+    --text: #15202E;
+    --muted: #526173;
+    --action: #0E7C6B;
+    --action-hover: #0A6657;
+    --action-soft: #DDF1EC;
+    --danger: #B3261E;
+    --danger-hover: #951F18;
+    --danger-bg: #FBEAE9;
+    --on-ink: #F2F6FA;
+    --on-ink-muted: #B9CBE0;
+
+    --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: "Familjen Grotesk", "Atkinson Hyperlegible", sans-serif;
+
+    --radius: 6px;
+    --radius-lg: 14px;
+    --shadow: 0 28px 60px -28px rgba(16, 42, 76, 0.45);
+    --shadow-sm: 0 1px 2px rgba(16, 42, 76, 0.06), 0 8px 24px -12px rgba(16, 42, 76, 0.18);
+    --gutter: clamp(1rem, 5vw, 3rem);
+
+    /* Animation du formulaire coulissant */
+    --slide-duration: 0.85s;
+    --slide-ease: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body { margin: 0; height: 100%; }
+
+body {
+    background: var(--paper);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Pages connectées : fond gris-bleu, contenus sur surfaces blanches */
+body.app { background: var(--canvas); }
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--ink);
+    margin: 0;
+}
+
+/* Échelle typographique : 2.75 / 2 / 1.375 rem, titres en 700 */
+h1 {
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+/* Logo : pictogramme (dossier + croix) + nom */
+.wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.375rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.logo-mark {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: none;
+}
+
+:focus-visible {
+    outline: 3px solid var(--action);
+    outline-offset: 2px;
+}
+
+/* Formulaires */
+
+.field { margin-bottom: 1.375rem; }
+
+.field label,
+.field .label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    margin-bottom: 0.4rem;
+}
+
+.input {
+    width: 100%;
+    font: inherit;
+    color: var(--text);
+    background: var(--field);
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    padding: 0.8rem 0.9rem;
+    transition: border-color 0.15s, background-color 0.15s;
+}
+
+.input:hover { border-color: var(--line); }
+
+.input:focus {
+    outline: none;
+    background: var(--paper);
+    border-color: var(--ink);
+}
+
+/* Boutons */
+
+.btn {
+    font: inherit;
+    font-weight: 700;
+    border: 0;
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.btn:disabled {
+    cursor: progress;
+    opacity: 0.75;
+}
+
+.btn-primary {
+    color: #FFFFFF;
+    background: var(--action);
+}
+
+.btn-primary:hover { background: var(--action-hover); }
+
+.btn-block { width: 100%; }
+
+.btn-danger {
+    color: #FFFFFF;
+    background: var(--danger);
+}
+
+.btn-danger:hover { background: var(--danger-hover); }
+
+.btn-ghost-danger {
+    color: var(--danger);
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--danger);
+}
+
+.btn-ghost-danger:hover { background: var(--danger-bg); }
+
+/* Messages */
+
+.alert {
+    display: none;
+    margin: 0 0 1.375rem;
+    padding: 0.75rem 0.9rem;
+    border-left: 4px solid currentColor;
+    font-weight: 700;
+    font-size: 0.9375rem;
+}
+
+.alert.visible { display: block; }
+
+.alert-error {
+    color: var(--danger);
+    background: var(--danger-bg);
+}
+
+.btn-secondary {
+    color: var(--ink);
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.btn-secondary:hover { background: var(--field); }
+
+.btn-on-ink {
+    color: var(--on-ink);
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--on-ink);
+}
+
+.btn-on-ink:hover { background: var(--ink-soft); }
+
+a.btn {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* Icônes (Healthicons, domaine public) : coloriées par currentColor via un masque.
+   Usage : <span class="icon" style="--icon: url('.../nom.svg')"></span> */
+.icon {
+    display: inline-block;
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: currentColor;
+    -webkit-mask: var(--icon) center / contain no-repeat;
+    mask: var(--icon) center / contain no-repeat;
+}
+
+.icon-lg { width: 3rem; height: 3rem; }
+
+/* Mise en page commune à toutes les pages */
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main { flex: 1; }
+
+.container {
+    width: 100%;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+/* Barre de navigation : collante, blanche, filet en bas */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+}
+
+.site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4.75rem;
+}
+
+.site-header .btn { padding: 0.6rem 1.1rem; }
+
+.site-footer {
+    margin-top: auto;
+    padding: 2rem 0;
+    font-size: 0.9375rem;
+    color: var(--muted);
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+}
+
+.site-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+}
+
+.site-footer .wordmark { font-size: 1.125rem; }
+
+.site-footer .logo-mark { width: 1.75rem; height: 1.75rem; }
+
+.site-footer p { margin: 0; }
+
+.lead {
+    margin: 0;
+    color: var(--muted);
+    max-width: 38rem;
+}
+
+.password-wrap { position: relative; }
+
+.password-wrap .input { padding-right: 6rem; }
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0.45rem;
+    transform: translateY(-50%);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    border-radius: 4px;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+}
+
+.password-toggle:hover { background: rgba(20, 54, 92, 0.08); }
+
+/* Connexion : formulaire coulissant à double panneau (personnel / patient) */
+
+.auth-slider {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 36rem;
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.auth-pane {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem clamp(1.5rem, 4vw, 3.5rem);
+    transition: opacity 0.5s ease 0.3s, transform 0.6s var(--slide-ease) 0.2s;
+}
+
+.auth-pane h3 {
+    font-weight: 600;
+    font-size: 1.75rem;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.35rem;
+}
+
+.auth-pane .lead { margin-bottom: 2rem; }
+
+.auth-help {
+    margin: 1.25rem 0 0;
+    font-size: 0.9375rem;
+    color: var(--muted);
+}
+
+/* Le formulaire qui part s'efface vite ; celui qui arrive apparaît quand le volet est passé */
+.auth-slider:not(.is-patient) [data-pane="patient"],
+.auth-slider.is-patient [data-pane="staff"] {
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Le volet bleu recouvre le formulaire inactif et glisse d'un côté à l'autre */
+.auth-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 50%;
+    background: var(--ink);
+    color: var(--on-ink);
+    transition: transform var(--slide-duration) var(--slide-ease);
+    will-change: transform;
+}
+
+.auth-slider.is-patient .auth-overlay { transform: translateX(-100%); }
+
+.overlay-panel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem clamp(1.5rem, 4vw, 3.5rem);
+    transition: opacity 0.5s ease 0.35s, transform 0.7s var(--slide-ease) 0.25s, visibility 0s linear 0.25s;
+}
+
+.overlay-title {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 3.4vw, 2.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+}
+
+.overlay-panel p:not(.overlay-title) {
+    margin: 0 0 2rem;
+    color: var(--on-ink-muted);
+    max-width: 22rem;
+}
+
+/* Le texte du volet glisse dans le sens du mouvement en se fondant */
+.auth-slider:not(.is-patient) [data-overlay="to-staff"] { transform: translateX(-2.5rem); }
+.auth-slider.is-patient [data-overlay="to-patient"] { transform: translateX(2.5rem); }
+
+.auth-slider:not(.is-patient) [data-overlay="to-staff"],
+.auth-slider.is-patient [data-overlay="to-patient"] {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, transform 0.4s ease, visibility 0s linear 0.25s;
+}
+
+@media (max-width: 760px) {
+    .auth-slider {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    .auth-slider:not(.is-patient) [data-pane="patient"],
+    .auth-slider.is-patient [data-pane="staff"],
+    .auth-slider:not(.is-patient) [data-overlay="to-staff"],
+    .auth-slider.is-patient [data-overlay="to-patient"] { display: none; }
+
+    .auth-pane { padding: 2rem 1.25rem; }
+
+    .auth-overlay,
+    .auth-slider.is-patient .auth-overlay {
+        position: static;
+        width: auto;
+        transform: none;
+    }
+
+    .overlay-panel,
+    .auth-slider .overlay-panel,
+    .auth-pane {
+        position: static;
+        transform: none !important;
+    }
+
+    .overlay-panel { padding: 1.75rem 1.25rem; }
+
+    .overlay-title { font-size: 1.5rem; }
+
+    .overlay-panel p:not(.overlay-title) { margin-bottom: 1.25rem; }
+}
+
+/* Navigation quand on est connecté */
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Lien de section : barre verte sous la page active */
+.nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 4.75rem;
+    color: var(--muted);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.nav-link:hover,
+.nav-link[aria-current="page"] { color: var(--ink); }
+
+.nav-link[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    background: var(--action);
+}
+
+.site-user {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--line);
+    font-size: 0.9375rem;
+    color: var(--muted);
+}
+
+.avatar {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--on-ink);
+    background: var(--ink);
+}
+
+/* Pages de l'application (après connexion) */
+
+.app-page { padding: clamp(2rem, 5vw, 3.5rem) 0 4rem; }
+
+.page-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.page-head h1 { margin-bottom: 0.35rem; }
+
+.muted { color: var(--muted); }
+
+/* Tableau */
+
+/* Surface blanche (tableaux, fiches) posée sur le fond gris-bleu */
+.surface {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.surface-pad { padding: clamp(1.5rem, 4vw, 2.5rem); }
+
+.table-wrap { overflow-x: auto; }
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+.table th {
+    text-align: left;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--muted);
+    padding: 0.9rem 1.25rem;
+    background: #F8FAFC;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+}
+
+.table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--field);
+    vertical-align: middle;
+}
+
+.table tbody tr:last-child td { border-bottom: 0; }
+
+.table tbody tr { cursor: pointer; transition: background-color 0.15s ease; }
+
+.table tbody tr:hover { background: #F4F8FB; }
+
+.link-button {
+    font: inherit;
+    font-weight: 700;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+}
+
+.link-button:hover { text-decoration: underline; }
+
+.badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--muted);
+    background: var(--field);
+}
+
+.badge-ok {
+    color: var(--action-hover);
+    background: var(--action-soft);
+}
+
+.empty {
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var(--muted);
+}
+
+/* Fenêtre (dialog natif) */
+
+.dialog {
+    width: min(52rem, calc(100% - 2rem));
+    max-height: calc(100% - 2rem);
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    color: var(--text);
+}
+
+.dialog-sm { width: min(32rem, calc(100% - 2rem)); }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.dialog::backdrop { background: rgba(20, 54, 92, 0.55); }
+
+/* En-tête et pied fixes, seul le contenu défile */
+.dialog[open] {
+    display: flex;
+    flex-direction: column;
+    animation: dialog-in 0.25s ease;
+}
+
+.dialog > form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.dialog-body {
+    overflow-y: auto;
+    min-height: 0;
+}
+
+@keyframes dialog-in {
+    from { opacity: 0; transform: translateY(0.75rem); }
+}
+
+.dialog-header,
+.dialog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.75rem;
+}
+
+.dialog-header { border-bottom: 1px solid var(--field); }
+
+.dialog-footer {
+    justify-content: flex-end;
+    border-top: 1px solid var(--field);
+}
+
+.dialog-body { padding: 1.5rem 1.75rem; }
+
+.dialog-close {
+    font: inherit;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    border-radius: var(--radius);
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+}
+
+.dialog-close:hover { background: var(--field); }
+
+/* Formulaires longs : groupes + grille 2 colonnes */
+
+.fieldset {
+    border: 0;
+    margin: 0 0 1.75rem;
+    padding: 0;
+}
+
+.fieldset legend {
+    padding: 0;
+    margin-bottom: 1rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--ink);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 1.25rem;
+}
+
+.form-grid .full { grid-column: 1 / -1; }
+
+.form-grid .field { margin-bottom: 1rem; }
+
+.optional {
+    font-weight: 400;
+    color: var(--muted);
+}
+
+.choices {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.8rem 0;
+}
+
+.choice {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 400 !important;
+    margin: 0 !important;
+}
+
+.choice input { accent-color: var(--action); width: 1.15rem; height: 1.15rem; }
+
+select.input { appearance: auto; }
+
+/* Fiche patient en lecture */
+
+.record {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1.75rem 2.5rem;
+}
+
+.record-section h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid var(--ink);
+}
+
+.record-section dl { margin: 0; }
+
+.record-section dt {
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+.record-section dd {
+    margin: 0 0 0.75rem;
+    font-weight: 700;
+}
+
+.record-section dd.missing {
+    font-weight: 400;
+    color: var(--muted);
+}
+
+.alert-success {
+    color: var(--action-hover);
+    background: var(--action-soft);
+}
+
+@media (max-width: 700px) {
+    .site-user, .hide-sm { display: none; }
+    .site-header:has(.site-nav) .wordmark-text { display: none; }
+    .site-nav { gap: 0.75rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .dialog-header, .dialog-footer, .dialog-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}

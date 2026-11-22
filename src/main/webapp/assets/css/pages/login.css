@@ -1,0 +1,77 @@
+/* Page /login : uniquement la mise en page propre à cette page.
+   Couleurs, typo, boutons et formulaire coulissant viennent de global.css. */
+
+.login-page {
+    padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+    background: var(--field);
+}
+
+.login-page .container { max-width: 80rem; }
+
+.login-page h1 { margin-bottom: 0.5rem; }
+
+.login-page .lead { margin-bottom: 2rem; }
+
+/* Formulaire plus grand sur cette page */
+.login-page .auth-slider { min-height: min(44rem, 80vh); }
+
+.login-page .auth-pane,
+.login-page .overlay-panel { padding: 3.5rem clamp(1.5rem, 5vw, 5rem); }
+
+.login-page .auth-pane h3 { font-size: 2.125rem; }
+
+.login-page .auth-pane form { max-width: 28rem; }
+
+/* Comptes de test */
+
+.test-accounts { margin-top: 2.5rem; }
+
+.test-accounts h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.35rem;
+}
+
+.test-accounts .lead { margin-bottom: 1rem; }
+
+.test-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.test-account {
+    width: 100%;
+    font: inherit;
+    text-align: left;
+    color: var(--text);
+    background: var(--paper);
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.test-account:hover { border-color: var(--ink); }
+
+.test-account strong {
+    display: block;
+    font-family: var(--font-display);
+    color: var(--ink);
+}
+
+.test-account span {
+    display: block;
+    font-size: 0.9375rem;
+    color: var(--muted);
+}
+
+@media (max-width: 760px) {
+    .login-page .auth-slider { min-height: 0; }
+    .login-page .auth-pane,
+    .login-page .overlay-panel { padding: 2rem 1.25rem; }
+    .test-list { grid-template-columns: 1fr; }
+}
