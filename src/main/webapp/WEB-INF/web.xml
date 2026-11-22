@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
+    <!-- Package scanné au démarrage pour trouver les classes @RController -->
+    <context-param>
+        <param-name>packageToScan</param-name>
+        <param-value>com.hopital</param-value>
+    </context-param>
+
+    <!-- Vue = prefix + nom retourné par le controller + suffix (ex : /WEB-INF/views/users.jsp) -->
+    <context-param>
+        <param-name>prefix</param-name>
+        <param-value>/WEB-INF/views/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>suffix</param-name>
+        <param-value>.jsp</param-value>
+    </context-param>
+
+    <!-- Configuration Spring (services, repositories, DataSource PostgreSQL) -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+
+    <!-- @RAuthenticated : clés de session + page de login -->
+    <context-param>
+        <param-name>authUserKey</param-name>
+        <param-value>user</param-value>
+    </context-param>
+    <context-param>
+        <param-name>authRoleKey</param-name>
+        <param-value>role</param-value>
+    </context-param>
+    <context-param>
+        <param-name>loginUrl</param-name>
+        <param-value>/login</param-value>
+    </context-param>
+
+    <!-- 1. Spring crée ses beans (doit être avant RInitListener) -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- 2. Le framework scanne les controllers et construit la table des routes -->
+    <listener>
+        <listener-class>randy.framework.listener.RInitListener</listener-class>
+    </listener>
+
+    <!-- Point d'entrée unique -->
+    <servlet>
+        <servlet-name>FrontController</servlet-name>
+        <servlet-class>randy.framework.servlet.RFrontController</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FrontController</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,5 @@
+# Copier ce fichier en db.properties et renseigner vos identifiants
+# (db.properties est ignoré par git : ne jamais le commiter)
+db.url=jdbc:postgresql://localhost:5432/hopital
+db.username=VOTRE_USER
+db.password=VOTRE_MOT_DE_PASSE
